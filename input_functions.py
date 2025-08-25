@@ -37,7 +37,8 @@ def initial_navigator(current_questions): # Function to determine the action typ
     elif action == "view":
         view_questions(current_questions)
     elif action == "close":
-        return "close"
+        if input("Warning: If you close the program all questions will be deleted! Are you sure you want to close the program? (y/n): ").lower() == 'y':
+            return "close"    
     else:
         print("Invalid action. Action may not be implimented yet. Please choose 'add questions' or 'name change'.")
     initial_navigator(current_questions)
