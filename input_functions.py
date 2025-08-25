@@ -47,6 +47,7 @@ def answer_questions(current_questions, name): # Function to answer questions
                     add_answer(current_questions[question], answer)
                 print("Thank you for answering the questions!")
                 print("Have a great day!")
+                return name
             else:
                 print("Sorry, this survey is intended for adults only.")
         else:
@@ -59,12 +60,14 @@ def initial_navigator(current_questions, name): # Function to determine the acti
     if action == "add":
         new_question (current_questions)
     elif action == "answer":
-        answer_questions(current_questions, name)
+        name = answer_questions(current_questions, name)
         lockout(current_questions, name)
     elif action == "name":
         name = get_username()
     elif action == "view":
         view_questions(current_questions)
+    elif action == "analyse":
+        analyse_answers(current_questions)
     elif action == "close":
         if input("Warning: If you close the program all questions will be deleted! Are you sure you want to close the program? (y/n):\n").lower() == 'y':
             return "close"    
