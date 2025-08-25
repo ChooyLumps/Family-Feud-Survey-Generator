@@ -8,22 +8,34 @@ def new_question(current_questions={}): # Function to impliment a new question
     if question in current_questions: # Check if the question already exists
         print("This question already exists.")
     else: # If the question does not exist, add it to the dictionary
-        current_questions[question] = []
+        current_questions[question] = {}
         print(f"Question '{question}' added.")
     if input("Would you like to add another question? (y/n): ").lower() == 'y': # Ask if the user wants to add another question
         new_question(current_questions)
-    else:
+    else: # If the user does not want to add another question, print the final questions list
         print("Finished adding questions.")
         print("Final Questions List:")
         for question in current_questions:
             print(f"- {question}")
 
+def view_questions(current_questions): # Function to view current questions
+    if not current_questions: # Check if there are no questions
+        print("No questions available.")
+    else: # If there are questions, print them
+        print("Current Questions:")
+        for question in current_questions:
+            print(f"- {question}")
+
+
 def initial_navigator(current_questions): # Function to determine the action type
-    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-name change\n-analyse answer\n-close program: ").lower().split(" ")[0]
+    print("====================================")
+    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-name change\n-analyse answer\n-close program:\n").lower().split(" ")[0]
     if action == "add":
         new_question (current_questions)
     elif action == "name":
         get_username()
+    elif action == "view":
+        view_questions(current_questions)
     elif action == "close":
         return "close"
     else:
