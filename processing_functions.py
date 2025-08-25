@@ -1,4 +1,3 @@
-from input_functions import initial_navigator
 
 def view_questions(current_questions): # Function to view current questions
     if not current_questions: # Check if there are no questions
@@ -18,7 +17,8 @@ def lockout(current_questions, name):
     password = "ketchup_master_3000" # Set the password
     attempt = input("Enter the password to continue: ") # Prompt user for the password
     if attempt == password: # Check if the password is correct
-        initial_navigator(current_questions, name)
+        return
     else: # If the password is incorrect, prompt the user to try again
         print("Incorrect password. Try again.")
-        lockout()
+        lockout(current_questions, name)
+

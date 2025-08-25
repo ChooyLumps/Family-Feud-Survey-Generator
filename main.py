@@ -1,4 +1,5 @@
 from input_functions import *
+from processing_functions import *
 
 
 def main():
@@ -8,7 +9,7 @@ def main():
     name = get_username()
     current_questions = {}
     sequence = initial_navigator(current_questions, name)
-    print("Thank you for using the Family Feud Servey Genorator. Goodbye!")
+    print("Thank you for using the Family Feud Survey Genorator. Goodbye!")
 
 
 if __name__ == "__main__":
