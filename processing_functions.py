@@ -1,4 +1,6 @@
 
+username_list = [] # List to store usernames for checking duplicates
+
 def view_questions(current_questions): # Function to view current questions
     if not current_questions: # Check if there are no questions
         print("No questions available.")
@@ -13,6 +15,33 @@ def add_answer(question, answer): # Function to add an answer to a question
     else: # If the answer does not exist, add it to the dictionary
         question[answer] = 1
 
+def check_username(username): # Function to check if the username already exists
+    if username in username_list: # Check if the username is already in the list
+        print("It appears that you have already taken the survey.")
+        return False
+    else: # If the username is not in the list, add it to the list
+        username_list.append(username)
+        return True
+
+def check_validity(current_questions, name):
+    if not current_questions: # Check if there are no questions
+        print("No questions available to answer.")
+        return False
+    else: # If there are questions, prompt the user to answer them
+        print("====================================")
+        name_check = input(f"Your name will not be linked to your answers.\nPlease confirm that the name on your badge is {name} (y/n):\n")
+        if name_check == "y": # Check if the user confirmed their name
+            if check_username(current_questions, name):
+                age_check = input("Please enter your age:\n")
+                if int(age_check) >= 18: # Check if the user is 18 or older
+                    return True
+                else:
+                    print("Sorry, this survey is intended for adults only.")
+                    return False
+        else:
+            print("Please ask admin to change your name.")
+            return False
+    
 def lockout(current_questions, name):
     password = "ketchup_master_3000" # Set the password
     attempt = input("Enter the password to continue: ") # Prompt user for the password
