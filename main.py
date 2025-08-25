@@ -2,12 +2,13 @@ from input_functions import *
 
 
 def main():
-    username = get_username()
+    print("===================================")
+    print("Welcome to Family Feud Servey Genorator!")
+    print("===================================")
     current_questions = {}
-    new_question(current_questions)
-    print("Final Questions List:")
-    for question in current_questions:
-        print(f"- {question}")
+    go = initial_navigator(current_questions)
+    print("Thank you for using the Family Feud Servey Genorator. Goodbye!")
+
 
 if __name__ == "__main__":
     main()
