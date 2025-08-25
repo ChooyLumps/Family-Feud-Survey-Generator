@@ -1,5 +1,8 @@
+from questions import *
+
+
 def main():
-    print("Hello from family-feud!")
+    get_username()
 
 
 if __name__ == "__main__":
