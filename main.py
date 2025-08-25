@@ -8,7 +8,7 @@ def main():
     print("===================================")
     name = get_username()
     current_questions = {}
-    sequence = initial_navigator(current_questions, name)
+    initial_navigator(current_questions, name)
     print("Thank you for using the Family Feud Survey Genorator. Goodbye!")
 
 

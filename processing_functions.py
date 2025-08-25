@@ -22,15 +22,37 @@ def lockout(current_questions, name):
         print("Incorrect password. Try again.")
         lockout(current_questions, name)
 
+def top_answers(question, total_answers): # Function to get the top answers for a question
+    if not question: # Check if there are no answers
+        print("No answers available for this question.")
+        return
+    sorted_answers = sorted(question, key=lambda x: question[x], reverse=True)
+    print(f"Top answers for question '{question}':")
+    for answer in sorted_answers:
+        total_answers -= question[answer]
+        if total_answers >= 0:
+            print(f"- {answer}: {question[answer]}")
+        else:
+            ending_answer = question[answer] + total_answers
+            print(f"- {answer}: {ending_answer}")
+            break
+    
 def analyse_answers(current_questions): # Function to analyse answers
     if not current_questions: # Check if there are no questions
         print("No questions available to analyse.")
     else: # If there are questions, begin analysis
-        for question in current_questions:
-            print("====================================")
-            print(f"Analysis for question: {question}")
-            sorted_answers = sorted(current_questions[question], key=lambda x: current_questions[question][x], reverse=True)
-            for answer in sorted_answers:
-                print(f"- {answer}: {current_questions[question][answer]}")
-            print("====================================")
-            
+        if input("Would you like to analyse all answers or just the top answers? (all/top): ").lower() == 'all':
+            total_answers = float('inf')
+            for question in current_questions:
+                print("====================================")
+                print(f"Question: {question}")
+                top_answers(current_questions[question], total_answers)
+                print("====================================")
+        else:
+            total_answers = 50 # Set the total number of top answers to display
+            for question in current_questions:
+                print("====================================")
+                print(f"Question: {question}")
+                top_answers(current_questions[question], total_answers)
+                print("====================================")
+                

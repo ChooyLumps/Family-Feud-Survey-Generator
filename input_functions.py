@@ -70,7 +70,7 @@ def initial_navigator(current_questions, name): # Function to determine the acti
         analyse_answers(current_questions)
     elif action == "close":
         if input("Warning: If you close the program all questions will be deleted! Are you sure you want to close the program? (y/n):\n").lower() == 'y':
-            return "close"    
+            return   
     else:
         print("Invalid action. Action may not be implimented yet")
     initial_navigator(current_questions, name)
