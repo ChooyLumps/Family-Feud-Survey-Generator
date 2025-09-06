@@ -40,7 +40,7 @@ def answer_questions(current_questions, name): # Function to answer questions
             add_answer(current_questions[question], answer)
         print("Thank you for answering the questions!")
         print("Have a great day!")
-     return name
+    return name
 
 def initial_navigator(current_questions, name): # Function to determine the action type
     print("====================================")
