@@ -3,7 +3,9 @@ A very simple code that takes questions, takes answers, and returns the most pop
 ## Launching
 Use cd to navigate to the Family-Feud Folder
 Enter the following code:
+
 source .venv/bin/activate
+
 uv run main.py
 
 Follow the on-screen instructions from there.
