@@ -1,9 +1,14 @@
 from processing_functions import *
 
+def get_password(): # Function to get the admin password
+    return input("Please set the admin password: ")
+
+
 def get_username(): # Function to get the user's name
     username = input("Please enter the name on your badge: ")
     print(f"Hello, {username}!")
     return username
+
 
 def new_question(current_questions={}): # Function to impliment a new question
     question = input("Enter the new question: ") # Prompt user for a new question
@@ -19,6 +24,7 @@ def new_question(current_questions={}): # Function to impliment a new question
         print("Final Questions List:")
         for question in current_questions:
             print(f"- {question}")
+
 
 def answer_questions(current_questions, name): # Function to answer questions
     if check_validity(current_questions, name): # Check if the survey can be taken
@@ -42,6 +48,7 @@ def answer_questions(current_questions, name): # Function to answer questions
         print("Have a great day!")
     return name
 
+
 def initial_navigator(current_questions, name): # Function to determine the action type
     print("====================================")
     action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-name change\n-analyse answer\n-close program:\n").lower().split(" ")[0]
@@ -49,7 +56,7 @@ def initial_navigator(current_questions, name): # Function to determine the acti
         new_question (current_questions)
     elif action == "answer":
         name = answer_questions(current_questions, name)
-        lockout(current_questions, name)
+        lockout()
     elif action == "name":
         name = get_username()
     elif action == "view":
@@ -63,3 +70,11 @@ def initial_navigator(current_questions, name): # Function to determine the acti
         print("Invalid action. Action may not be implimented yet")
     initial_navigator(current_questions, name)
 
+
+def lockout():
+    attempt = input("Enter the password to continue: ") # Prompt user for the password
+    if attempt == password: # Check if the password is correct
+        return
+    else: # If the password is incorrect, prompt the user to try again
+        print("Incorrect password. Try again.")
+        lockout()
