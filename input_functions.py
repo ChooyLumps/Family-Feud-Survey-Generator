@@ -52,11 +52,32 @@ def answer_questions(current_questions, name=''): # Function to answer questions
     return
 
 
+def remove_question(current_questions): # Function to remove a question
+    if not current_questions: # Check if there are no questions
+        print("No questions available to remove.")
+        return
+    else: # If there are questions, prompt the user to remove one
+        view_questions(current_questions)
+        dead_index = int(input("Enter the number of the question you want to remove: ")) - 1
+        if 0 =< dead_index < len(current_questions):
+            dead_question = list(current_questions.keys())[dead_index]
+            del current_questions[dead_question]
+            print(f"Question '{dead_question}' removed.")
+        else:
+            print("Invalid question number.")
+            remove_question(current_questions)
+    if input("Would you like to remove another question? (y/n): ").lower() == 'y': # Ask if the user wants to remove another question
+        remove_question(current_questions)
+    else: # If the user does not want to remove another question, print the final questions
+        return
+
 def navigator(current_questions, password): # Function to determine the action type
     print("====================================")
-    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-analyse answer\n-close program:\n").lower().split(" ")[0]
+    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-remove question\n-analyse answer\n-close program:\n").lower().split(" ")[0]
     if action == "add":
         new_question(current_questions)
+    elif action == "remove":
+        remove_question(current_questions)
     elif action == "answer":
         answer_questions(current_questions)
         lockout(password)
