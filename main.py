@@ -6,9 +6,9 @@ def main():
     print("===================================")
     print("Welcome to Family Feud Survey Genorator!")
     print("===================================")
-    name = get_username()
+    password = get_password() # Get the admin password
     current_questions = {}
-    initial_navigator(current_questions, name)
+    navigator(current_questions, password)
     print("Thank you for using the Family Feud Survey Genorator. Goodbye!")
 
 

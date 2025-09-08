@@ -26,7 +26,9 @@ def new_question(current_questions={}): # Function to impliment a new question
             print(f"- {question}")
 
 
-def answer_questions(current_questions, name): # Function to answer questions
+def answer_questions(current_questions, name=''): # Function to answer questions
+    if name == '':
+        name = get_username()
     if check_validity(current_questions, name): # Check if the survey can be taken
         print("===================================")
         print("Welcome to the survey!")
@@ -40,25 +42,24 @@ def answer_questions(current_questions, name): # Function to answer questions
             answer_questions(current_questions, name)
         print("Let's begin!")
         print("===================================")
-        for question in current_questions: # Loop through each question
-            print(f"{question}:")
-            answer = input("Your answer: ").lower()
-            add_answer(current_questions[question], answer)
-        print("Thank you for answering the questions!")
-        print("Have a great day!")
-    return name
+        if check_username(name): # Check if the username is valid
+            for question in current_questions: # Loop through each question
+                print(f"{question}:")
+                answer = input("Your answer: ").lower()
+                add_answer(current_questions[question], answer)
+            print("Thank you for answering the questions!")
+            print("Have a great day!")
+    return
 
 
-def initial_navigator(current_questions, name): # Function to determine the action type
+def navigator(current_questions, password): # Function to determine the action type
     print("====================================")
-    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-name change\n-analyse answer\n-close program:\n").lower().split(" ")[0]
+    action = input("What would you like to do?\n-answer questions\n-view questions\n-add question\n-analyse answer\n-close program:\n").lower().split(" ")[0]
     if action == "add":
-        new_question (current_questions)
+        new_question(current_questions)
     elif action == "answer":
-        name = answer_questions(current_questions, name)
-        lockout()
-    elif action == "name":
-        name = get_username()
+        answer_questions(current_questions)
+        lockout(password)
     elif action == "view":
         view_questions(current_questions)
     elif action == "analyse":
@@ -68,13 +69,13 @@ def initial_navigator(current_questions, name): # Function to determine the acti
             return   
     else:
         print("Invalid action. Action may not be implimented yet")
-    initial_navigator(current_questions, name)
+    navigator(current_questions, name)
 
 
-def lockout():
+def lockout(password):
     attempt = input("Enter the password to continue: ") # Prompt user for the password
     if attempt == password: # Check if the password is correct
         return
     else: # If the password is incorrect, prompt the user to try again
         print("Incorrect password. Try again.")
-        lockout()
+        lockout(password)

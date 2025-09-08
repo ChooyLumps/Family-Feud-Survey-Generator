@@ -31,19 +31,13 @@ def check_validity(current_questions, name):
         print("No questions available to answer.")
         return False
     else: # If there are questions, prompt the user to answer them
-        print("====================================")
-        name_check = input(f"Your name will not be linked to your answers.\nPlease confirm that the name on your badge is {name} (y/n):\n")
-        if name_check == "y": # Check if the user confirmed their name
-            if check_username(current_questions, name):
-                age_check = input("Please enter your age:\n")
-                if int(age_check) >= 18: # Check if the user is 18 or older
-                    return True
-                else:
-                    print("Sorry, this survey is intended for adults only.")
-                    return False
-        else:
-            print("Please ask admin to change your name.")
-            return False
+        print("====================================") 
+            age_check = input("Please enter your age:\n")
+            if int(age_check) >= 18: # Check if the user is 18 or older
+                return True
+            else:
+                print("Sorry, this survey is intended for adults only.")
+                return False
     
 
 
