@@ -27,7 +27,7 @@ def new_question(current_questions={}): # Function to impliment a new question
 
 
 def answer_questions(current_questions, name=''): # Function to answer questions
-    if name == '':
+    if name == '': # If no name is provided, get the username
         name = get_username()
     if check_validity(current_questions, name): # Check if the survey can be taken
         print("===================================")

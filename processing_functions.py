@@ -6,8 +6,11 @@ def view_questions(current_questions): # Function to view current questions
         print("No questions available.")
     else: # If there are questions, print them
         print("Current Questions:")
+        i = 1
         for question in current_questions:
-            print(f"- {question}")
+            print(f"{i}. {question}")
+            i += 1
+        print(f"You have surveyed {get_total_answers()} people so far.")
 
 
 def add_answer(question, answer): # Function to add an answer to a question
@@ -24,6 +27,10 @@ def check_username(username): # Function to check if the username already exists
     else: # If the username is not in the list, add it to the list
         username_list.append(username)
         return True
+
+
+def get_total_answers(): # Function to get the total number of people who have taken the survey
+    return len(username_list)
 
 
 def check_validity(current_questions, name):
